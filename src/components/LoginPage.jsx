@@ -1,16 +1,21 @@
 import { useRef } from 'react';
 import { LockClosedIcon } from '@heroicons/react/24/solid';
+import { useAuth } from '../hooks/useAuth';
 
 export default function LoginPage() {
-  const emailRef = useRef(null);
+  const usernameRef = useRef(null);
   const passwordRef = useRef(null);
+  const auth = useAuth();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const email = emailRef.current.value;
+    const username = usernameRef.current.value;
     const password = passwordRef.current.value;
 
-    console.log(email, password);
+    console.log(username, password);
+    auth.signIn(username, password).then(() => {
+      console.log('Login sucess');
+    });
   };
   return (
     <>
@@ -25,17 +30,17 @@ export default function LoginPage() {
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
                 <label htmlFor="email-address" className="sr-only">
-                  Email address
+                  Username
                 </label>
                 <input
                   id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  name="username"
+                  type="username"
+                  autoComplete="username"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
-                  ref={emailRef}
+                  placeholder="Username"
+                  ref={usernameRef}
                 />
               </div>
               <div>

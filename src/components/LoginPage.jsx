@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useRouter } from 'next/router';
 import { LockClosedIcon } from '@heroicons/react/24/solid';
 import { useAuth } from '../hooks/useAuth';
 
@@ -6,6 +7,7 @@ export default function LoginPage() {
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const auth = useAuth();
+  const router = useRouter();
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -14,7 +16,7 @@ export default function LoginPage() {
 
     console.log(username, password);
     auth.signIn(username, password).then(() => {
-      console.log('Login sucess');
+      router.push('/dashboard');
     });
   };
   return (

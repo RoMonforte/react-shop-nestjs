@@ -3,10 +3,10 @@ import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Products', href: './dashboard' },
+  { name: 'Categories', href: '#' },
+  { name: 'Backend', href: 'https://ecommerce-nest-production.up.railway.app/docs/' },
+  { name: 'Github Portfolio', href: 'https://github.com/RoMonforte' },
 ];
 
 export default function Home() {
@@ -104,35 +104,31 @@ export default function Home() {
               <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                 <div className="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                   <span className="text-gray-600">
-                    Announcing our next round of funding.{' '}
+                    This is a complete fake e-commerce page created with TalwindCSS frontend to backend. {' '}
                     <a href="#" className="font-semibold text-indigo-600">
                       <span className="absolute inset-0" aria-hidden="true" />
-                      Read more <span aria-hidden="true">&rarr;</span>
+                      See backend <span aria-hidden="true">&rarr;</span>
                     </a>
                   </span>
                 </div>
               </div>
               <div>
-                <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">Data to enrich your online business</h1>
+                <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">Login and obtain an jwt to take a full interact with the api</h1>
                 <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
-                  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+                  You can interact with the products of the fake e-commerce
+
                 </p>
                 <div className="mt-8 flex gap-x-4 sm:justify-center">
                   <a
-                    href="#"
+                    href="./login"
                     className="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700"
                   >
-                    Get started{' '}
+                    Visit my other projects here
                     <span className="text-indigo-200" aria-hidden="true">
                       &rarr;
                     </span>
                   </a>
-                  <a href="#" className="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                    Live demo{' '}
-                    <span className="text-gray-400" aria-hidden="true">
-                      &rarr;
-                    </span>
-                  </a>
+              
                 </div>
               </div>
               <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

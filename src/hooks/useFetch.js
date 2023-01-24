@@ -3,10 +3,11 @@ import axios from 'axios';
 
 const useFetch = (endpoint) => {
   const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   async function fetchData() {
-    const response = await axios.get(endpoint);
-    setData(response.data);
+    const response = await axios(endpoint);
+    setData(response.data), [];
   }
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const useFetch = (endpoint) => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [endpoint]);
 
   return data;
 };

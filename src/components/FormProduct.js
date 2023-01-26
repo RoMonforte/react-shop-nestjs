@@ -28,86 +28,58 @@ export default function FormProduct() {
                         type="text"
                         name="first-name"
                         id="first-name"
-                        autoComplete="given-name"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className=" bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
 
                     <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="price" className="block text-sm font-medium text-gray-700 ">
+                        Price
+                      </label>
+                      <input type="text" name="price" id="price" className="mt-50 block w-full rounded-md border-gray-400 bg-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                    </div>
+
+                    <div className="col-span-6">
+                      <label htmlFor="description" className="block text-sm font-medium text-gray-700">
                         Description
                       </label>
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
-                        autoComplete="family-name"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-4">
-                      <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                        Price
-                      </label>
-                      <input
-                        type="text"
-                        name="email-address"
-                        id="email-address"
-                        autoComplete="email"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        name="description"
+                        id="description"
+                        className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
 
                     <div className="col-span-6">
-                      <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                        Stock
-                      </label>
-                      <input
-                        type="text"
-                        name="street-address"
-                        id="street-address"
-                        autoComplete="street-address"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                      <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="image-url" className="block text-sm font-medium text-gray-700">
                         Image URL
                       </label>
-                      <input
-                        type="text"
-                        name="city"
-                        id="city"
-                        autoComplete="address-level2"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
+                      <input type="text" name="image-url" id="image-url" className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                    </div>
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                      <label htmlFor="stock" className="block text-sm font-medium text-gray-700">
+                        Stock
+                      </label>
+                      <input type="text" name="stock" id="stock" className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
                     </div>
 
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                      <label htmlFor="region" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="brand" className="block text-sm font-medium text-gray-700">
                         Brand
                       </label>
-                      <input
-                        type="text"
-                        name="region"
-                        id="region"
-                        autoComplete="address-level1"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
+                      <input type="text" name="brand" id="brand" className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
                     </div>
 
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                      <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="categories" className="block text-sm font-medium text-gray-700">
                         Categories
                       </label>
                       <input
                         type="text"
-                        name="postal-code"
-                        id="postal-code"
-                        autoComplete="postal-code"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        name="categories"
+                        id="categories"
+                        className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
                   </div>

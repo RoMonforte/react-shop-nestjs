@@ -3,6 +3,7 @@ import useFetch from '../../hooks/useFetch';
 import Modal from '../../common/Modal';
 import { useState } from 'react';
 import FormProduct from '../../components/FormProduct';
+import DashboardHeader from '../../components/DashboardHeader';
 
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
@@ -10,13 +11,14 @@ export default function Dashboard() {
   console.log(products);
   return (
     <>
-      <div className="flex flex-col">
+    <DashboardHeader />
+      <div className="pt-6 flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <span class="hidden sm:block">
+            <span className="pb-6 hidden sm:block">
               <button
                 type="button"
-                class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 onClick={() => setOpen(true)}
               >
                 <svg className="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -55,7 +57,7 @@ export default function Dashboard() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
-                            <img className="h-10 w-10 rounded-full" src={product.image} alt="" />
+                            <img className="h-10 w-10 rounded-full" src={product.image} alt="image" />
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">{product.name}</div>
@@ -65,15 +67,19 @@ export default function Dashboard() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">{product.brand.name}</div>
-                        <div className="text-sm text-gray-500">{product.id}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{product.price}</span>
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">${product.price}</span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.stock}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="#" className="text-indigo-600 hover:text-indigo-900">
                           Edit
+                        </a>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                          Delete
                         </a>
                       </td>
                     </tr>

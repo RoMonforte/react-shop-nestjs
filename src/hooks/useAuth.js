@@ -2,6 +2,7 @@ import React, { useState, useContext, createContext } from 'react';
 import Cookie from 'js-cookie';
 import axios from 'axios';
 import endPoints from '../services/api';
+import jwt from 'jwt-decode';
 
 const AuthContext = createContext();
 
@@ -31,7 +32,9 @@ function useProvideAuth() {
       Cookie.set('token', token, { expires: 15 });
 
       axios.defaults.headers.Authorization = `Bearer ${token}`;
-      const { data: user } = await axios.get(endPoints.auth.profile);
+      const jwtData = jwt(token);
+      const id = await jwtData.sub;
+      const { data: user } = await axios.get(endPoints.users.getSingleUser(id));
       setUser(user);
     }
   };

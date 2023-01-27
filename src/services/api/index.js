@@ -19,6 +19,9 @@ const endPoints = {
     editCategory: (id) => `${API}/categories/${id}`,
     deleteCategory: (id) => `${API}/categories/${id}`,
   },
+  users: {
+    getSingleUser: (id) => `${API}/users/${id}`,
+  }
 };
 
 export default endPoints;

@@ -1,4 +1,24 @@
+import { useRef } from "react";
+import {addProduct} from "../services/api/product";
+
 export default function FormProduct() {
+  const fromRef = useRef(null);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(fromRef.current);
+    const data = {
+      name: formData.get('product-name'),
+      description: formData.get('description'),
+      price: parseInt(formData.get('price')),
+      stock: parseInt(formData.get('stock')),
+      image: formData.get('image-url'),
+      brandId: parseInt(formData.get('brand')),
+      categoriesId: [formData.get('categories')]
+    };
+    addProduct(data).then((response) => {
+      console.log(response);
+    })
+  }
   return (
     <>
       <div className="hidden sm:block" aria-hidden="true">
@@ -16,18 +36,18 @@ export default function FormProduct() {
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+            <form ref={fromRef} onSubmit={handleSubmit} action="#" method="POST">
               <div className="overflow-hidden shadow sm:rounded-md">
                 <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="product-name" className="block text-sm font-medium text-gray-700">
                         Product Name
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
+                        name="product-name"
+                        id="product-name"
                         className=" bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>

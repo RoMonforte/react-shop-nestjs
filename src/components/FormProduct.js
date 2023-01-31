@@ -1,8 +1,9 @@
-import { useRef } from "react";
-import {addProduct} from "../services/api/product";
+import { useRef } from 'react';
+import { addProduct } from '../services/api/product';
 
-export default function FormProduct() {
+export default function FormProduct({ setOpen, setAlert }) {
   const fromRef = useRef(null);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(fromRef.current);
@@ -13,12 +14,28 @@ export default function FormProduct() {
       stock: parseInt(formData.get('stock')),
       image: formData.get('image-url'),
       brandId: parseInt(formData.get('brand')),
-      categoriesId: [formData.get('categories')]
+      categoriesId: [formData.get('categories')],
     };
-    addProduct(data).then((response) => {
-      console.log(response);
-    })
-  }
+    addProduct(data)
+      .then(() => {
+        setAlert({
+          active: true,
+          message: 'Product added successfully',
+          type: 'success',
+          autoClose: false,
+        });
+        setOpen(false);
+      })
+      .catch((error) => {
+        setAlert({
+          active: true,
+          message: error.message,
+          type: 'error',
+          autoClose: false,
+        });
+        setOpen(false);
+      });
+  };
   return (
     <>
       <div className="hidden sm:block" aria-hidden="true">
@@ -56,7 +73,12 @@ export default function FormProduct() {
                       <label htmlFor="price" className="block text-sm font-medium text-gray-700 ">
                         Price
                       </label>
-                      <input type="text" name="price" id="price" className="mt-50 block w-full rounded-md border-gray-400 bg-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                      <input
+                        type="text"
+                        name="price"
+                        id="price"
+                        className="mt-50 block w-full rounded-md border-gray-400 bg-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6">
@@ -75,20 +97,35 @@ export default function FormProduct() {
                       <label htmlFor="image-url" className="block text-sm font-medium text-gray-700">
                         Image URL
                       </label>
-                      <input type="text" name="image-url" id="image-url" className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                      <input
+                        type="text"
+                        name="image-url"
+                        id="image-url"
+                        className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label htmlFor="stock" className="block text-sm font-medium text-gray-700">
                         Stock
                       </label>
-                      <input type="text" name="stock" id="stock" className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                      <input
+                        type="text"
+                        name="stock"
+                        id="stock"
+                        className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label htmlFor="brand" className="block text-sm font-medium text-gray-700">
                         Brand
                       </label>
-                      <input type="text" name="brand" id="brand" className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                      <input
+                        type="text"
+                        name="brand"
+                        id="brand"
+                        className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
 
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">

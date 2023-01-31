@@ -1,17 +1,33 @@
 import endPoints from '../../services/api';
-import useFetch from '../../hooks/useFetch';
 import Modal from '../../common/Modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FormProduct from '../../components/FormProduct';
 import DashboardHeader from '../../components/DashboardHeader';
+import axios from 'axios';
+import useAlert from '../../hooks/useAlert';
+import Alert from '../../common/Alert';
 
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
-  const products = useFetch(endPoints.products.getProducts(50, 0));
-  console.log(products);
+  const [products, setProducts] = useState([])
+  const {alert, setAlert, toggleAlert} = useAlert();
+
+  useEffect(() => {
+    async function getProducts() {
+      const response = await axios.get(endPoints.products.getProducts(500,0));
+      setProducts(response.data);
+    }
+    try {
+      getProducts()
+    } catch (error) {
+      console.log(error);
+    }
+  },[alert]);
+
   return (
     <>
     <DashboardHeader />
+    <Alert alert={alert} handleClose={toggleAlert}/>
       <div className="pt-6 flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -91,7 +107,7 @@ export default function Dashboard() {
         </div>
       </div>
       <Modal open={open} setOpen={setOpen}>
-        <FormProduct/>
+        <FormProduct setOpen={setOpen} setAlert={setAlert}/>
       </Modal>
     </>
   );

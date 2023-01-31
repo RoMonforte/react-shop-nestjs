@@ -6,28 +6,42 @@ import DashboardHeader from '../../components/DashboardHeader';
 import axios from 'axios';
 import useAlert from '../../hooks/useAlert';
 import Alert from '../../common/Alert';
+import { deleteProduct } from '../../services/api/product';
+import { XCircleIcon } from '@heroicons/react/24/solid';
 
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
-  const [products, setProducts] = useState([])
-  const {alert, setAlert, toggleAlert} = useAlert();
+  const [products, setProducts] = useState([]);
+  const { alert, setAlert, toggleAlert } = useAlert();
 
   useEffect(() => {
     async function getProducts() {
-      const response = await axios.get(endPoints.products.getProducts(500,0));
+      const response = await axios.get(endPoints.products.getProducts(500, 0));
       setProducts(response.data);
     }
     try {
-      getProducts()
+      getProducts();
     } catch (error) {
       console.log(error);
     }
-  },[alert]);
+  }, [alert]);
+
+  const handleDelete = (id) => {
+    deleteProduct(id).then(() => {
+      setAlert({
+        active: true,
+        message: 'Delete product successfully',
+        type: 'error',
+        autoclose: true,
+      });
+    })
+  }
+
 
   return (
     <>
-    <DashboardHeader />
-    <Alert alert={alert} handleClose={toggleAlert}/>
+      <DashboardHeader />
+      <Alert alert={alert} handleClose={toggleAlert} />
       <div className="pt-6 flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -94,9 +108,10 @@ export default function Dashboard() {
                         </a>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                          Delete
-                        </a>
+                      <XCircleIcon className='flex=shrink-0 h6 w-6 text-gray-400 cursor-pointer'
+                      aria-hidden="true"
+                      onClick={() => handleDelete(product.id)}
+                      />
                       </td>
                     </tr>
                   ))}
@@ -107,7 +122,7 @@ export default function Dashboard() {
         </div>
       </div>
       <Modal open={open} setOpen={setOpen}>
-        <FormProduct setOpen={setOpen} setAlert={setAlert}/>
+        <FormProduct setOpen={setOpen} setAlert={setAlert} />
       </Modal>
     </>
   );

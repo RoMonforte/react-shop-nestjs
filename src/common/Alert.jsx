@@ -1,8 +1,8 @@
-import { XCircleIcon } from '@heroicons/react/24/solid';
 
-const Alert = ({ alert, handleClose }) => {
+
+const Alert = ({ alert}) => {
   if (alert && alert?.autoClose) {
-    setTimeout(() => {}, 1000);
+    setTimeout(() => {}, 9000);
   }
 
   return (

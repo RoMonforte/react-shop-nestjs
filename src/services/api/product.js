@@ -16,4 +16,16 @@ const addProduct = async (body) => {
   return response.data;
 };
 
-export { addProduct };
+const deleteProduct = async (id) => {
+  const config = {
+    headers: {
+      accept: '*/*',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`,
+    },
+  };
+  const response = await axios.delete(endPoints.products.deleteProduct(id), config);
+  return response.data;
+}
+
+export { addProduct, deleteProduct };

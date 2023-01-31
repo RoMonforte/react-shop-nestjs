@@ -7,7 +7,7 @@ import DashboardHeader from '../../components/DashboardHeader';
 
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
-  const products = useFetch(endPoints.products.getProducts(5, 0));
+  const products = useFetch(endPoints.products.getProducts(50, 0));
   console.log(products);
   return (
     <>

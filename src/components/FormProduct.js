@@ -19,7 +19,7 @@ export default function FormProduct({ setOpen, setAlert }) {
     addProduct(data)
       .then(() => {
         setAlert({
-          active: true,
+          active: true, 
           message: 'Product added successfully',
           type: 'success',
           autoClose: false,
@@ -53,7 +53,7 @@ export default function FormProduct({ setOpen, setAlert }) {
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form ref={fromRef} onSubmit={handleSubmit} action="#" method="POST">
+            <form ref={fromRef} onSubmit={handleSubmit}>
               <div className="overflow-hidden shadow sm:rounded-md">
                 <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">

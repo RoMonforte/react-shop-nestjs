@@ -9,7 +9,7 @@ import Alert from '../../common/Alert';
 import { deleteProduct } from '../../services/api/product';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 
-export default function Dashboard() {
+export default function Products() {
   const [open, setOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const { alert, setAlert, toggleAlert } = useAlert();
@@ -34,9 +34,8 @@ export default function Dashboard() {
         type: 'error',
         autoclose: true,
       });
-    })
-  }
-
+    });
+  };
 
   return (
     <>
@@ -108,10 +107,7 @@ export default function Dashboard() {
                         </a>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <XCircleIcon className='flex=shrink-0 h6 w-6 text-gray-400 cursor-pointer'
-                      aria-hidden="true"
-                      onClick={() => handleDelete(product.id)}
-                      />
+                        <XCircleIcon className="flex=shrink-0 h6 w-6 text-gray-400 cursor-pointer" aria-hidden="true" onClick={() => handleDelete(product.id)} />
                       </td>
                     </tr>
                   ))}

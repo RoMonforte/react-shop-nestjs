@@ -1,17 +1,46 @@
 import endPoints from '../../services/api';
-import useFetch from '../../hooks/useFetch';
 import Modal from '../../common/Modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FormCategory from '../../components/FormCategory';
 import DashboardHeader from '../../components/DashboardHeader';
+import axios from 'axios';
+import useAlert from '../../hooks/useAlert';
+import Alert from '../../common/Alert';
+import { deleteCategory } from '../../services/api/category';
+import { XCircleIcon } from '@heroicons/react/24/solid';
 
-export default function Dashboard() {
+export default function Categories() {
   const [open, setOpen] = useState(false);
-  const categories = useFetch(endPoints.categories.getCategories);
-  console.log(categories);
+  const [categories, setCategories] = useState([]);
+  const { alert, setAlert, toggleAlert } = useAlert();
+
+  useEffect(() => {
+    async function getCategories() {
+      const response = await axios.get(endPoints.categories.getCategories);
+      setCategories(response.data);
+    }
+    try { 
+      getCategories();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [alert]);
+
+  const handleDelete = (id) => {
+    deleteCategory(id).then(() => {
+      setAlert({
+        active: true,
+        message: 'Delete product successfully',
+        type: 'error',
+        autoclose: true,
+      });
+    });
+  };
+
   return (
     <>
     <DashboardHeader />
+    <Alert alert={alert} handleClose={toggleAlert} />
       <div className="pt-6 flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -62,9 +91,7 @@ export default function Dashboard() {
                         </a>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                          Delete
-                        </a>
+                      <XCircleIcon className="flex=shrink-0 h6 w-6 text-gray-400 cursor-pointer" aria-hidden="true" onClick={() => handleDelete(category.id)} />
                       </td>
                     </tr>
                   ))}
@@ -75,7 +102,7 @@ export default function Dashboard() {
         </div>
       </div>
       <Modal open={open} setOpen={setOpen}>
-        <FormCategory/>
+        <FormCategory setOpen={setOpen} setAlert={setAlert} />
       </Modal>
     </>
   );

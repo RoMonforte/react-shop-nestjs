@@ -1,4 +1,37 @@
-export default function FormProduct() {
+import { useRef } from 'react';
+import { addCategory } from '../services/api/category';
+
+export default function FormCategory({ setOpen, setAlert }) {
+  const fromRef = useRef(null);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(fromRef.current);
+    const data = {
+      name: formData.get('category-name'),
+      description: formData.get('description'),
+      image: formData.get('image-url'),
+    };
+    addCategory(data)
+      .then(() => {
+        setAlert({
+          active: true, 
+          message: 'Category added successfully',
+          type: 'success',
+          autoClose: false,
+        });
+        setOpen(false);
+      })
+      .catch((error) => {
+        setAlert({
+          active: true,
+          message: error.message,
+          type: 'error',
+          autoClose: false,
+        });
+        setOpen(false);
+      });
+  };
   return (
     <>
       <div className="hidden sm:block" aria-hidden="true">
@@ -16,18 +49,18 @@ export default function FormProduct() {
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+            <form ref={fromRef} onSubmit={handleSubmit}>
               <div className="overflow-hidden shadow sm:rounded-md">
                 <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="category-name" className="block text-sm font-medium text-gray-700">
                         Category Name
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
+                        name="category-name"
+                        id="category-name"
                         className=" bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>

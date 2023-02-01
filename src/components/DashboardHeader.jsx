@@ -7,7 +7,7 @@ import { BellIcon, Bars3Icon, XMarkIcon, ArrowRightCircleIcon } from '@heroicons
 const navigation = [
   { name: 'Products', href: '/dashboard/products', current: true },
   { name: 'Categories', href: '/dashboard/categories', current: false },
-  { name: 'Brands', href: 'dashboard/brands', current: false },
+  { name: 'Brands', href: '/dashboard/brands', current: false },
 ];
 const userNavigation = [
   { name: 'Sign In', href: '/login' },

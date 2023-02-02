@@ -10,7 +10,7 @@ export default function Edit() {
   useEffect(() => {
     const { id } = router.query;
 
-    if(!router.isReady) return;
+    if (!router.isReady) return;
     async function getProduct() {
       const response = await axios.get(endPoints.products.getSingleProduct(id));
       setProduct(response.data);

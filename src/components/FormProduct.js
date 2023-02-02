@@ -1,8 +1,10 @@
 import { useRef } from 'react';
-import { addProduct } from '../services/api/product';
+import { useRouter } from 'next/router';
+import { addProduct, updateProduct } from '../services/api/product';
 
 export default function FormProduct({ setOpen, setAlert, product }) {
   const fromRef = useRef(null);
+  const router = useRouter();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,29 +16,35 @@ export default function FormProduct({ setOpen, setAlert, product }) {
       stock: parseInt(formData.get('stock')),
       image: formData.get('image-url'),
       brandId: parseInt(formData.get('brand')),
-      categoriesId: [formData.get('categories')],
+      categoriesId: [parseInt(formData.get('categories'))],
     };
-    addProduct(data)
-      .then(() => {
-        setAlert({
-          active: true,
-          message: 'Product added successfully',
-          type: 'success',
-          autoClose: false,
-        });
-        setOpen(false);
-      })
-      .catch((error) => {
-        setAlert({
-          active: true,
-          message: error.message,
-          type: 'error',
-          autoClose: false,
-        });
-        setOpen(false);
-      });
-  };
 
+    if (product) {
+      updateProduct(product.id, data).then(() => {
+        router.push('/dashboard/products');
+      });
+    } else {
+      addProduct(data)
+        .then(() => {
+          setAlert({
+            active: true,
+            message: 'Product added successfully',
+            type: 'success',
+            autoClose: false,
+          });
+          setOpen(false);
+        })
+        .catch((error) => {
+          setAlert({
+            active: true,
+            message: error.message,
+            type: 'error',
+            autoClose: false,
+          });
+          setOpen(false);
+        });
+    }
+  };
 
   return (
     <>
@@ -141,7 +149,7 @@ export default function FormProduct({ setOpen, setAlert, product }) {
                         Categories
                       </label>
                       <input
-                        defaultValue = {product?.categoriesId}
+                        defaultValue={product?.categoriesId}
                         type="text"
                         name="categories"
                         id="categories"

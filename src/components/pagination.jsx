@@ -3,7 +3,7 @@ import endPoints from '../services/api';
 
 export default function Pagination({ offset, setOffset }) {
     const handlePrev = () => {
-        if (offset <= 5) return;
+        if (offset < 5) return;
         setOffset(offset - 5);
       };
     

@@ -38,7 +38,7 @@ export default function Products() {
           ))}
         </div>
       </div>
-    <Pagination/>
+    <Pagination offset={offset }setOffset={setOffset}/>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { addProduct } from '../services/api/product';
 
-export default function FormProduct({ setOpen, setAlert }) {
+export default function FormProduct({ setOpen, setAlert, product }) {
   const fromRef = useRef(null);
 
   const handleSubmit = (event) => {
@@ -19,7 +19,7 @@ export default function FormProduct({ setOpen, setAlert }) {
     addProduct(data)
       .then(() => {
         setAlert({
-          active: true, 
+          active: true,
           message: 'Product added successfully',
           type: 'success',
           autoClose: false,
@@ -36,6 +36,8 @@ export default function FormProduct({ setOpen, setAlert }) {
         setOpen(false);
       });
   };
+
+
   return (
     <>
       <div className="hidden sm:block" aria-hidden="true">
@@ -62,6 +64,7 @@ export default function FormProduct({ setOpen, setAlert }) {
                         Product Name
                       </label>
                       <input
+                        defaultValue={product?.name}
                         type="text"
                         name="product-name"
                         id="product-name"
@@ -74,6 +77,7 @@ export default function FormProduct({ setOpen, setAlert }) {
                         Price
                       </label>
                       <input
+                        defaultValue={product?.price}
                         type="text"
                         name="price"
                         id="price"
@@ -86,6 +90,7 @@ export default function FormProduct({ setOpen, setAlert }) {
                         Description
                       </label>
                       <input
+                        defaultValue={product?.description}
                         type="text"
                         name="description"
                         id="description"
@@ -98,6 +103,7 @@ export default function FormProduct({ setOpen, setAlert }) {
                         Image URL
                       </label>
                       <input
+                        defaultValue={product?.image}
                         type="text"
                         name="image-url"
                         id="image-url"
@@ -109,6 +115,7 @@ export default function FormProduct({ setOpen, setAlert }) {
                         Stock
                       </label>
                       <input
+                        defaultValue={product?.stock}
                         type="text"
                         name="stock"
                         id="stock"
@@ -121,6 +128,7 @@ export default function FormProduct({ setOpen, setAlert }) {
                         Brand
                       </label>
                       <input
+                        defaultValue={product?.brand?.id}
                         type="text"
                         name="brand"
                         id="brand"
@@ -133,6 +141,7 @@ export default function FormProduct({ setOpen, setAlert }) {
                         Categories
                       </label>
                       <input
+                        defaultValue = {product?.categoriesId}
                         type="text"
                         name="categories"
                         id="categories"

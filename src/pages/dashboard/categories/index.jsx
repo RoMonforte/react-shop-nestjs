@@ -1,12 +1,12 @@
-import endPoints from '../../services/api';
-import Modal from '../../common/Modal';
+import endPoints from '../../../services/api';
+import Modal from '../../../common/Modal';
 import { useState, useEffect } from 'react';
-import FormCategory from '../../components/FormCategory';
-import DashboardHeader from '../../components/DashboardHeader';
+import FormCategory from '../../../components/FormCategory';
+import DashboardHeader from '../../../components/DashboardHeader';
 import axios from 'axios';
-import useAlert from '../../hooks/useAlert';
-import Alert from '../../common/Alert';
-import { deleteCategory } from '../../services/api/category';
+import useAlert from '../../../hooks/useAlert';
+import Alert from '../../../common/Alert';
+import { deleteCategory } from '../../../services/api/category';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 
 export default function Categories() {

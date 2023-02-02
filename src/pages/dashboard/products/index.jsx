@@ -1,12 +1,12 @@
-import endPoints from '../../services/api';
-import Modal from '../../common/Modal';
+import endPoints from '../../../services/api';
+import Modal from '../../../common/Modal';
 import { useState, useEffect } from 'react';
-import FormProduct from '../../components/FormProduct';
-import DashboardHeader from '../../components/DashboardHeader';
+import FormProduct from '../../../components/FormProduct';
+import DashboardHeader from '../../../components/DashboardHeader';
 import axios from 'axios';
-import useAlert from '../../hooks/useAlert';
-import Alert from '../../common/Alert';
-import { deleteProduct } from '../../services/api/product';
+import useAlert from '../../../hooks/useAlert';
+import Alert from '../../../common/Alert';
+import { deleteProduct } from '../../../services/api/product';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 
 export default function Products() {

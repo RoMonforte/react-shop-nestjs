@@ -3,12 +3,12 @@ import endPoints from '../services/api';
 
 export default function Pagination({ offset, setOffset }) {
     const handlePrev = () => {
-        if (offset < 5) return;
-        setOffset(offset - 5);
+        if (offset < 8) return;
+        setOffset(offset - 8);
       };
     
       const handleNext = () => {
-        setOffset(offset + 5);
+        setOffset(offset + 8);
       };
   return (
     <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">

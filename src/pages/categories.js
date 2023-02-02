@@ -1,7 +1,13 @@
 import endPoints from '../services/api';
 import useFetch from '../hooks/useFetch';
+import Pagination from '../components/pagination';
+import { useState } from 'react';
 
-export default function Example() {
+const PRODUCT_LIMIT = 8;
+const PRODUCT_OFFSET = 0;
+
+export default function Categories() {
+  const [offset, setOffset] = useState(PRODUCT_OFFSET);
   const categories = useFetch(endPoints.categories.getCategories);
   console.log(categories);
   return (
@@ -28,6 +34,7 @@ export default function Example() {
           </div>
         </div>
       </div>
+      <Pagination offset={offset }setOffset={setOffset}/>
     </div>
   );
 }

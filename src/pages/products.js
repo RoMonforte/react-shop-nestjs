@@ -3,7 +3,7 @@ import useFetch from '../hooks/useFetch';
 import Pagination from '../components/pagination';
 import { useState } from 'react';
 
-const PRODUCT_LIMIT = 5;
+const PRODUCT_LIMIT = 8;
 const PRODUCT_OFFSET = 0;
 
 export default function Products() {

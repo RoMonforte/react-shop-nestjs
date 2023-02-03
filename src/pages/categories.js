@@ -8,7 +8,7 @@ const PRODUCT_OFFSET = 0;
 
 export default function Categories() {
   const [offset, setOffset] = useState(PRODUCT_OFFSET);
-  const categories = useFetch(endPoints.categories.getCategories);
+  const categories = useFetch(endPoints.categories.getCategories(PRODUCT_LIMIT, offset));
   console.log(categories);
   return (
     <div className="bg-gray-100">

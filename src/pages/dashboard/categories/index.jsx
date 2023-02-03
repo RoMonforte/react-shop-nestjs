@@ -16,7 +16,7 @@ export default function Categories() {
 
   useEffect(() => {
     async function getCategories() {
-      const response = await axios.get(endPoints.categories.getCategories);
+      const response = await axios.get(endPoints.categories.getCategories(500,0));
       setCategories(response.data);
     }
     try { 

@@ -11,7 +11,6 @@ const navigation = [
 ];
 const userNavigation = [
   { name: 'Sign In', href: '/login' },
-  { name: 'My orders', href: '#' },
   { name: 'Dashboard', href: '/dashboard' },
 ];
 
@@ -20,13 +19,12 @@ function classNames(...classes) {
 }
 
 export default function Header() {
-
   const auth = useAuth();
   const userData = {
     name: auth?.user?.name,
     email: auth?.user?.email,
     imageUrl: auth?.user?.image,
-  }
+  };
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">
@@ -54,14 +52,16 @@ export default function Header() {
                   </div>
                 </div>
                 <div className="hidden md:block">
-                  <div href ="login" className="ml-4 flex items-center md:ml-6">
+                  <div href="login" className="ml-4 flex items-center md:ml-6">
                     <button
                       href="/login"
                       type="button"
                       className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                     >
-                      <span href='/login' className="sr-only">Login now!</span>
-                      <ArrowRightCircleIcon href='/login' className="h-6 w-6" aria-hidden="false" />
+                      <span href="/login" className="sr-only">
+                        Login now!
+                      </span>
+                      <ArrowRightCircleIcon href="/login" className="h-6 w-6" aria-hidden="false" />
                     </button>
 
                     {/* Profile dropdown */}
@@ -94,6 +94,7 @@ export default function Header() {
                         </Menu.Items>
                       </Transition>
                     </Menu>
+                    
                   </div>
                 </div>
                 <div className="-mr-2 flex md:hidden">

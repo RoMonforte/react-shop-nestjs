@@ -13,7 +13,7 @@ const endPoints = {
     deleteProduct: (id) => `${API}/products/${id}`,
   },
   categories: {
-    getCategories: `${API}/categories`,
+    getCategories: (limit, offset) => `${API}/categories?limit=${limit}&offset=${offset}`,
     getSingleCategory: (id) => `${API}/categories/${id}`,
     createCategory: `${API}/categories`,
     editCategory: (id) => `${API}/categories/${id}`,

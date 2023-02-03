@@ -16,6 +16,18 @@ const addCategory = async (body) => {
   return response.data;
 };
 
+const updateCategory = async (id, body) => {
+  const config = {
+    headers: {
+      accept: '*/*',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`,
+    },
+  };
+  const response = await axios.put(endPoints.categories.editCategory(id), body, config);
+  return response.data;
+};
+
 const deleteCategory = async (id) => {
   const config = {
     headers: {
@@ -28,4 +40,4 @@ const deleteCategory = async (id) => {
   return response.data;
 }
 
-export { addCategory, deleteCategory };
+export { addCategory, deleteCategory, updateCategory };

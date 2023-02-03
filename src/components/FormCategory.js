@@ -1,8 +1,10 @@
 import { useRef } from 'react';
-import { addCategory } from '../services/api/category';
+import { useRouter } from 'next/router';
+import { addCategory, updateCategory } from '../services/api/category';
 
-export default function FormCategory({ setOpen, setAlert }) {
+export default function FormCategory({ setOpen, setAlert, category }) {
   const fromRef = useRef(null);
+  const router = useRouter();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,25 +14,32 @@ export default function FormCategory({ setOpen, setAlert }) {
       description: formData.get('description'),
       image: formData.get('image-url'),
     };
-    addCategory(data)
-      .then(() => {
-        setAlert({
-          active: true, 
-          message: 'Category added successfully',
-          type: 'success',
-          autoClose: false,
-        });
-        setOpen(false);
-      })
-      .catch((error) => {
-        setAlert({
-          active: true,
-          message: error.message,
-          type: 'error',
-          autoClose: false,
-        });
-        setOpen(false);
+
+    if (category) {
+      updateCategory(category.id, data).then(() => {
+        router.push('/dashboard/categories');
       });
+    } else {
+      addCategory(data)
+        .then(() => {
+          setAlert({
+            active: true,
+            message: 'Category added successfully',
+            type: 'success',
+            autoClose: false,
+          });
+          setOpen(false);
+        })
+        .catch((error) => {
+          setAlert({
+            active: true,
+            message: error.message,
+            type: 'error',
+            autoClose: false,
+          });
+          setOpen(false);
+        });
+    }
   };
   return (
     <>
@@ -58,6 +67,7 @@ export default function FormCategory({ setOpen, setAlert }) {
                         Category Name
                       </label>
                       <input
+                        defaultValue={category?.name}
                         type="text"
                         name="category-name"
                         id="category-name"
@@ -70,6 +80,7 @@ export default function FormCategory({ setOpen, setAlert }) {
                         Description
                       </label>
                       <input
+                      defaultValue={category?.description}
                         type="text"
                         name="description"
                         id="description"
@@ -81,7 +92,13 @@ export default function FormCategory({ setOpen, setAlert }) {
                       <label htmlFor="image-url" className="block text-sm font-medium text-gray-700">
                         Image URL
                       </label>
-                      <input type="text" name="image-url" id="image-url" className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                      <input
+                      defaultValue={category?.image}
+                        type="text"
+                        name="image-url"
+                        id="image-url"
+                        className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
                   </div>
                 </div>

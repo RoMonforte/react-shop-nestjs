@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
-import { addProduct, updateProduct } from '../services/api/product';
+import { addProduct, updateProduct } from '../services/api/product'; 
 
 export default function FormProduct({ setOpen, setAlert, product }) {
   const fromRef = useRef(null);

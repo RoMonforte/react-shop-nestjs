@@ -14,11 +14,11 @@ You can see, create, edit and delete the products, categories and brands in the 
 You can log in and obtain a cookie with an usable JWT to consume some endpoints in the API.
 
 
-Technologies Used: ☕️ 🐍 ⚛️
+### Technologies Used: ☕️ 🐍 ⚛️
 The project is made in Next.js framework. 
 I used TailwindCSS as the main design of the page.
 The propose of the project is to have an easy interact with the backend API Rest made in NestJS.
 
 
-Status: 📶
+### Status: 📶
 The project is currently on development, it works fairly well in development mode, but it needs some changes to put in production yet. 

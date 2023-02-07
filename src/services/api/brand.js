@@ -16,6 +16,18 @@ const addBrand = async (body) => {
   return response.data;
 };
 
+const updateBrand = async (id, body) => {
+  const config = {
+    headers: {
+      accept: '*/*',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`,
+    },
+  };
+  const response = await axios.put(endPoints.brands.editBrand(id), body, config);
+  return response.data;
+};
+
 const deleteBrand = async (id) => {
   const config = {
     headers: {
@@ -28,4 +40,4 @@ const deleteBrand = async (id) => {
   return response.data;
 }
 
-export { addBrand, deleteBrand };
+export { addBrand, deleteBrand, updateBrand };

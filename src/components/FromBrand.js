@@ -1,8 +1,10 @@
 import { useRef } from 'react';
-import { addBrand } from '../services/api/brand';
+import { useRouter } from 'next/router';
+import { addBrand, updateBrand } from '../services/api/brand';
 
-export default function FormBrand({ setOpen, setAlert }) {
+export default function FormBrand({ setOpen, setAlert, brand }) {
   const fromRef = useRef(null);
+  const router = useRouter();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -11,25 +13,31 @@ export default function FormBrand({ setOpen, setAlert }) {
       name: formData.get('brand-name'),
       image: formData.get('image-url'),
     };
-    addBrand(data)
-      .then(() => {
-        setAlert({
-          active: true, 
-          message: 'Brand added successfully',
-          type: 'success',
-          autoClose: false,
-        });
-        setOpen(false);
-      })
-      .catch((error) => {
-        setAlert({
-          active: true,
-          message: error.message,
-          type: 'error',
-          autoClose: false,
-        });
-        setOpen(false);
+    if (brand) {
+      updateBrand(brand.id, data).then(() => {
+        router.push('/dashboard/brands');
       });
+    } else {
+      addBrand(data)
+        .then(() => {
+          setAlert({
+            active: true,
+            message: 'Brand added successfully',
+            type: 'success',
+            autoClose: false,
+          });
+          setOpen(false);
+        })
+        .catch((error) => {
+          setAlert({
+            active: true,
+            message: error.message,
+            type: 'error',
+            autoClose: false,
+          });
+          setOpen(false);
+        });
+    }
   };
   return (
     <>
@@ -57,6 +65,7 @@ export default function FormBrand({ setOpen, setAlert }) {
                         Brand Name
                       </label>
                       <input
+                        defaultValue={brand?.name}
                         type="text"
                         name="brand-name"
                         id="brand-name"
@@ -68,7 +77,13 @@ export default function FormBrand({ setOpen, setAlert }) {
                       <label htmlFor="image-url" className="block text-sm font-medium text-gray-700">
                         Image URL
                       </label>
-                      <input type="text" name="image-url" id="image-url" className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                      <input
+                        defaultValue={brand?.image}
+                        type="text"
+                        name="image-url"
+                        id="image-url"
+                        className="bg-gray-300 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
                     </div>
                   </div>
                 </div>

@@ -1,5 +1,6 @@
+import Link from 'next/link';
 import endPoints from '../../../services/api';
-import Modal from '../../../common/Modal';
+import Modal from '../../../common/Modal'; 
 import { useState, useEffect } from 'react';
 import FormBrand from '../../../components/FromBrand';
 import DashboardHeader from '../../../components/DashboardHeader';
@@ -85,9 +86,9 @@ export default function Brands() {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                        <Link href={`/dashboard/brands/${brand.id}`} className="text-indigo-600 hover:text-indigo-900">
                           Edit
-                        </a>
+                        </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <XCircleIcon className="flex=shrink-0 h6 w-6 text-gray-400 cursor-pointer" aria-hidden="true" onClick={() => handleDelete(brand.id)} />

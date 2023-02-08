@@ -6,7 +6,7 @@ const navigation = [
   { name: 'Products', href: './products' },
   { name: 'Categories', href: '/categories' },
   { name: 'Brands', href: '/brands' },
-  { name: 'Github Profile', href: 'https://github.com/RoMonforte' },
+  { name: 'Code', href: 'https://github.com/RoMonforte/react-shop-nestjs' },
 ];
 
 export default function Home() {

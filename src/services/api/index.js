@@ -23,7 +23,7 @@ const endPoints = {
     getSingleUser: (id) => `${API}/users/${id}`,
   },
   brands: {
-    getBrands: `${API}/brands`,
+    getBrands: (limit, offset) => `${API}/brands?limit=${limit}&offset=${offset}`,
     getSingleBrand: (id) => `${API}/brands/${id}`,
     createBrand: `${API}/brands`,
     editBrand: (id) => `${API}/brands/${id}`,

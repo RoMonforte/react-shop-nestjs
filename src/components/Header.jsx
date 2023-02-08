@@ -8,6 +8,7 @@ const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Products', href: '/products', current: false },
   { name: 'Categories', href: '/categories', current: false },
+  { name: 'Brands', href: '/brands', current: false },
 ];
 const userNavigation = [
   { name: 'Sign In', href: '/login' },
@@ -53,16 +54,6 @@ export default function Header() {
                 </div>
                 <div className="hidden md:block">
                   <div href="login" className="ml-4 flex items-center md:ml-6">
-                    <button
-                      href="/login"
-                      type="button"
-                      className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                    >
-                      <span href="/login" className="sr-only">
-                        Login now!
-                      </span>
-                      <ArrowRightCircleIcon href="/login" className="h-6 w-6" aria-hidden="false" />
-                    </button>
 
                     {/* Profile dropdown */}
                     <Menu as="div" className="ml-3 relative">

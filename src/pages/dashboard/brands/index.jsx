@@ -17,7 +17,7 @@ export default function Brands() {
 
   useEffect(() => {
     async function getBrands() {
-      const response = await axios.get(endPoints.brands.getBrands);
+      const response = await axios.get(endPoints.brands.getBrands(500,0));
       setBrands(response.data);
     }
     try { 

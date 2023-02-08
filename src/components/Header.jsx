@@ -91,10 +91,10 @@ export default function Header() {
                               )}
                             </Menu.Item>
                           ))}
+                          <button onClick={() => auth.logOut()} className="block px-4 py-2 text-sm text-gray-700">Logout</button>
                         </Menu.Items>
                       </Transition>
                     </Menu>
-                    
                   </div>
                 </div>
                 <div className="-mr-2 flex md:hidden">

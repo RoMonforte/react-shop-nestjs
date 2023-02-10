@@ -2,6 +2,7 @@ import endPoints from '../../services/api';
 import useFetch from '../../hooks/useFetch';
 import Pagination from '../../components/pagination';
 import { useState } from 'react';
+import Link from 'next/link';
 
 const PRODUCT_LIMIT = 8;
 const PRODUCT_OFFSET = 0;
@@ -23,10 +24,10 @@ export default function Brands() {
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    <a href="./login.js">
+                    <Link href={`/brands/${brand.id}`}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {brand.name}
-                    </a>
+                    </Link>
                   </h3>
                 </div>
               </div>

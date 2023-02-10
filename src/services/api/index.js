@@ -11,6 +11,7 @@ const endPoints = {
     createProduct: `${API}/products`,
     editProduct: (id) => `${API}/products/${id}`,
     deleteProduct: (id) => `${API}/products/${id}`,
+    getProductsForBrand: (limit, offset, brandId) => `${API}/products?limit=${limit}&offset=${offset}&brandId=${parseInt(brandId)}`,
   },
   categories: {
     getCategories: (limit, offset) => `${API}/categories?limit=${limit}&offset=${offset}`,

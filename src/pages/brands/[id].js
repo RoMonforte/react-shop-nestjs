@@ -1,21 +1,23 @@
-import FormBrand from '../../../components/FromBrand';
+import BrandFilter from '../../components/BrandFilter';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
-import endPoints from '../../../services/api';
 
-export default function Edit() {
-  const [brand, setBrand] = useState({});
+export default function BrandForId() {
+  const [brandId, setBrandId] = useState();
   const router = useRouter();
   useEffect(() => {
-    const { id } = router.query;
-
+    const {id} = router.query;
     if (!router.isReady) return;
-    async function getBrand() {
-      const response = await axios.get(endPoints.brands.getSingleBrand(id));
-      setBrand(response.data);
+    async function setId(Id) {
+      const response = await Id;
+      setBrandId(response.toString())
     }
-    getBrand();
+    setId(id);
+
   }, [router?.isReady]);
-  return <FormBrand brand={brand} />;
+
+  if(!brandId) {
+    return <div> Loading ...</div>
+  } 
+  return <BrandFilter brandId={brandId} />;
 }
